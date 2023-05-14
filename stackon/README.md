@@ -1,12 +1,15 @@
 # Stackedkon
 
+## Objet
+
 1. Mise en place d'un broker MQTT (Mosquitto) avec docker
-2. Tests d'envoie et de réception de messages via le broker
-3. Client python MQTT: worker; les "jobs" sont envoyés en ligne de commande
+2. Tests d'envoi et de réception de messages via le broker
+3. Client python MQTT: worker: les "jobs" sont envoyés en ligne de commande
 4. Gestion du multi-threading: un worker doit pouvoir gérer plusieurs jobs à la fois
 5. TODO: Pour chaque job, utilisation de sous-threads/greenlets/etc.
 6. Evolutions possibles: création d'un service d'enrichissement de données (catégo ?)
 
+Architecture:
 ```
                                                                   pub/sub jobs/worker-1  ________
                                                                  -----------------------|worker-1|
@@ -46,13 +49,9 @@ workers/scrapers/scraper-1      # les données correspondant au scraper-1
 ## Architecture
 
 - subscribe on `client`: receive
-
 ```
 mosquitto_pub -m '{"task":"iter_acc","gid":"123"}' -t "workerpy/worker-1/job"
 ```
-
-
-
 
 ## Evolutions
 
